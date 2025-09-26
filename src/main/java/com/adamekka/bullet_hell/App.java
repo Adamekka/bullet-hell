@@ -9,12 +9,14 @@ import javafx.stage.Stage;
 public class App extends Application {
     public static void main(String[] args) { launch(args); }
 
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         Group root = new Group();
 
         Canvas canvas = new Canvas(
             Config.Window.SIZE.getWidth(), Config.Window.SIZE.getHeight()
         );
+
+        root.getChildren().add(canvas);
 
         Scene scene = new Scene(
             root, Config.Window.SIZE.getWidth(), Config.Window.SIZE.getHeight()
@@ -25,5 +27,8 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> System.exit(0));
+
+        Renderer renderer = new Renderer(canvas);
+        renderer.start();
     }
 }
