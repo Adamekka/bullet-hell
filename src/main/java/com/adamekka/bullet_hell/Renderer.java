@@ -1,14 +1,17 @@
 package com.adamekka.bullet_hell;
 
+import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class Renderer extends AnimationTimer {
+public final class Renderer extends AnimationTimer {
     private final Canvas canvas;
     private final GraphicsContext gc;
+
+    private final ArrayList<Drawable> drawables = new ArrayList<>();
 
     private long lastFrame = 0;
 
@@ -17,16 +20,29 @@ public class Renderer extends AnimationTimer {
         this.gc = canvas.getGraphicsContext2D();
     }
 
-    public void handle(long now) {
+    @Override
+    public final void handle(long now) {
         double delta = lastFrame == 0 ? 0 : (now - lastFrame) / 1_000_000_000D;
         lastFrame = now;
 
+        Input.getInstance().update(delta);
+
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        for (Drawable drawable : drawables) {
+            drawable.draw(gc, delta);
+        }
+
+        Player.getInstance().draw(gc, delta);
 
         drawFps(delta);
     }
 
-    private void drawFps(double delta) {
+    public final void addDrawable(Drawable drawable) {
+        drawables.add(drawable);
+    }
+
+    private final void drawFps(double delta) {
         int fps = calcFps(delta);
 
         gc.setFont(new Font("UbuntuMono Nerd Font", 30));
@@ -38,7 +54,7 @@ public class Renderer extends AnimationTimer {
     private double fpsCount = 0;
     private int averageFps = 0;
 
-    private int calcFps(double delta) {
+    private final int calcFps(double delta) {
         fpsSum += 1 / delta;
         fpsCount += 1;
 

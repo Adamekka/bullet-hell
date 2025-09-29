@@ -6,10 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 
-public class App extends Application {
-    public static void main(String[] args) { launch(args); }
+public final class App extends Application {
+    public static final void main(String[] args) { launch(args); }
 
-    public void start(Stage primaryStage) {
+    @Override
+    public final void start(Stage primaryStage) {
         Group root = new Group();
 
         Canvas canvas = new Canvas(
@@ -21,6 +22,11 @@ public class App extends Application {
         Scene scene = new Scene(
             root, Config.Window.SIZE.getWidth(), Config.Window.SIZE.getHeight()
         );
+
+        Input input = Input.getInstance();
+
+        scene.setOnKeyPressed(input::handleKeyPressed);
+        scene.setOnKeyReleased(input::handleKeyReleased);
 
         primaryStage.setTitle(Config.Window.TITLE);
         primaryStage.resizableProperty().setValue(false);
