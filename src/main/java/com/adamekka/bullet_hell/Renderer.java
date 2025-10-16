@@ -35,6 +35,10 @@ public final class Renderer extends AnimationTimer {
 
         Player.getInstance().draw(gc, delta);
 
+        Gun.getInstance().draw(gc, delta);
+
+        Gun.getInstance().simulate(delta);
+
         drawFps(delta);
     }
 

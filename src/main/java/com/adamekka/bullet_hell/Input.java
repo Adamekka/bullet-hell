@@ -9,7 +9,6 @@ public final class Input {
     private Input() {}
     public static final Input getInstance() { return instance; }
 
-    private final Player player = Player.getInstance();
     private final HashSet<KeyCode> pressedKeys = new HashSet<>();
 
     public final void handleKeyPressed(KeyEvent event) {
@@ -22,23 +21,28 @@ public final class Input {
 
     public final void update(double delta) {
         if (pressedKeys.isEmpty()) {
-            player.still();
+            Player.getInstance().still();
             return;
         }
 
         if (pressedKeys.contains(KeyCode.W) || pressedKeys.contains(KeyCode.UP))
-            player.moveUp(delta);
+            Player.getInstance().moveUp(delta);
 
         if (pressedKeys.contains(KeyCode.S)
             || pressedKeys.contains(KeyCode.DOWN))
-            player.moveDown(delta);
+            Player.getInstance().moveDown(delta);
 
         if (pressedKeys.contains(KeyCode.A)
             || pressedKeys.contains(KeyCode.LEFT))
-            player.moveLeft(delta);
+            Player.getInstance().moveLeft(delta);
 
         if (pressedKeys.contains(KeyCode.D)
             || pressedKeys.contains(KeyCode.RIGHT))
-            player.moveRight(delta);
+            Player.getInstance().moveRight(delta);
+
+        if (pressedKeys.contains(KeyCode.J)
+            || pressedKeys.contains(KeyCode.Z)) {
+            Player.getInstance().shoot(delta);
+        }
     }
 }

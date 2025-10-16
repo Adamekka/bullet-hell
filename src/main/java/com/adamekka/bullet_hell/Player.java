@@ -9,9 +9,11 @@ public final class Player implements Drawable {
     private Player() {}
     public static final Player getInstance() { return instance; }
 
+    public void shoot(double delta) { Gun.getInstance().shoot(delta); }
+
     // MARK: Movement
 
-    private Dimension2D position = new Dimension2D(
+    public Dimension2D position = new Dimension2D(
         Config.Window.SIZE.getWidth() / 2,
         Config.Window.SIZE.getHeight() * 3 / 4
     );
