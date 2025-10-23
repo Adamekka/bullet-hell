@@ -11,7 +11,7 @@ public final class PlayerBullet implements Bullet, Drawable {
 
     // MARK: Bullet
 
-    private static final double SPEED = 500;
+    private static final double SPEED = 1000;
 
     @Override
     public void simulate(double delta) {
