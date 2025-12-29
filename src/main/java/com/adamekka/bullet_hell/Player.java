@@ -14,8 +14,8 @@ public final class Player implements Drawable {
     // MARK: Movement
 
     public Dimension2D position = new Dimension2D(
-        Config.Window.size.getWidth() / 2,
-        Config.Window.size.getHeight() * 3 / 4
+        Config.Canvas.size.getWidth() / 2,
+        Config.Canvas.size.getHeight() * 3 / 4
     );
 
     private final double speed = 200;
@@ -38,7 +38,7 @@ public final class Player implements Drawable {
         position = new Dimension2D(
             position.getWidth(),
             Math.min(
-                Config.Window.size.getHeight(),
+                Config.Canvas.size.getHeight(),
                 position.getHeight() + speed * delta
             )
         );
@@ -56,7 +56,7 @@ public final class Player implements Drawable {
         direction = MovementDirection.RIGHT;
         position = new Dimension2D(
             Math.min(
-                Config.Window.size.getWidth(),
+                Config.Canvas.size.getWidth(),
                 position.getWidth() + speed * delta
             ),
             position.getHeight()

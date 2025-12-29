@@ -30,7 +30,7 @@ public final class MomijiGun implements Gun {
 
         while (bullets.peek() != null
                && bullets.peek().position.getHeight()
-                      > Config.Window.size.getHeight() + 100) {
+                      > Config.Canvas.size.getHeight() + 100) {
             bullets.remove();
         }
     }

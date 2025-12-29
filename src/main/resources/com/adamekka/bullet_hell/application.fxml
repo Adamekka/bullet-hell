@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Canvas fx:id="canvas" height="600.0" width="600.0" />
+      <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+               <children>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="16.0">
+                     <children>
+                        <Label text="HiScore:" textFill="WHITE">
+                           <font>
+                              <Font name="Ubuntu Nerd Font" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Score:" textFill="WHITE">
+                           <font>
+                              <Font name="Ubuntu Nerd Font" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Player:" textFill="WHITE">
+                           <font>
+                              <Font name="Ubuntu Nerd Font" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="16.0">
+                     <children>
+                        <Label fx:id="hiScoreLabel" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Ubuntu Nerd Font" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="scoreLabel" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Ubuntu Nerd Font" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="playerLabel" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Ubuntu Nerd Font" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets bottom="64.0" left="8.0" right="8.0" top="64.0" />
+         </padding>
+      </VBox>
+   </children>
+</HBox>

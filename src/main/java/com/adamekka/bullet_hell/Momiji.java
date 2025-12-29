@@ -63,8 +63,8 @@ public final class Momiji implements Enemy {
 
         orbitAngle += angularSpeed * delta;
 
-        double centerX = Config.Window.size.getWidth() / 2;
-        double centerY = Config.Window.size.getHeight() / 4;
+        double centerX = Config.Canvas.size.getWidth() / 2;
+        double centerY = Config.Canvas.size.getHeight() / 4;
 
         position = new Dimension2D(
             centerX + Math.cos(orbitAngle) * radius,
