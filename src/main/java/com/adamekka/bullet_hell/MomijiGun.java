@@ -26,12 +26,12 @@ public final class MomijiGun implements Gun {
     public void simulate(double delta) {
         for (MomijiBullet bullet : bullets) {
             bullet.simulate(delta);
+        }
 
-            if (bullet.position.getHeight()
-                > Config.Window.size.getHeight() + 100) {
-                bullets.remove(bullet);
-                break;
-            }
+        while (bullets.peek() != null
+               && bullets.peek().position.getHeight()
+                      > Config.Window.size.getHeight() + 100) {
+            bullets.remove();
         }
     }
 

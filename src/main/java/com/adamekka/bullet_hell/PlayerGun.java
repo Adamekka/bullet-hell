@@ -38,11 +38,11 @@ public final class PlayerGun implements Gun {
     public void simulate(double delta) {
         for (PlayerBullet bullet : bullets) {
             bullet.simulate(delta);
+        }
 
-            if (bullet.position.getHeight() < -100) {
-                bullets.remove(bullet);
-                break;
-            }
+        while (bullets.peek() != null
+               && bullets.peek().position.getHeight() < -100) {
+            bullets.remove();
         }
     }
 
