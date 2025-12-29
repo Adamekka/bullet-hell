@@ -33,6 +33,7 @@ public final class Renderer extends AnimationTimer {
 
         Momiji.getInstance().draw(gc, delta);
         Momiji.getInstance().shoot(delta);
+        Momiji.getInstance().simulate(delta);
 
         MomijiGun.getInstance().draw(gc, delta);
         MomijiGun.getInstance().simulate(delta);

@@ -4,14 +4,12 @@ import javafx.geometry.Dimension2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public final class Momiji implements Drawable, Enemy {
+public final class Momiji implements Enemy {
     private static final Momiji instance = new Momiji();
     private Momiji() {}
     public static final Momiji getInstance() { return instance; }
 
-    private Dimension2D position = new Dimension2D(
-        Config.Window.size.getWidth() / 2, Config.Window.size.getHeight() / 4
-    );
+    private Dimension2D position = new Dimension2D(0, 0);
 
     // MARK: Drawable
 
@@ -54,6 +52,24 @@ public final class Momiji implements Drawable, Enemy {
     @Override
     public final void shoot(double delta) {
         MomijiGun.getInstance().shoot(delta);
+    }
+
+    private double orbitAngle = 0;
+
+    @Override
+    public final void simulate(double delta) {
+        final double radius = 2;
+        final double angularSpeed = 5;
+
+        orbitAngle += angularSpeed * delta;
+
+        double centerX = Config.Window.size.getWidth() / 2;
+        double centerY = Config.Window.size.getHeight() / 4;
+
+        position = new Dimension2D(
+            centerX + Math.cos(orbitAngle) * radius,
+            centerY + Math.sin(orbitAngle) * radius
+        );
     }
 
     @Override
