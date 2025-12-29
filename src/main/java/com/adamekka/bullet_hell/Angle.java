@@ -1,6 +1,6 @@
 package com.adamekka.bullet_hell;
 
-public record Angle(double radians) {
+public final record Angle(double radians) {
     public static Angle fromDegrees(double deg) {
         return new Angle(Math.toRadians(deg));
     }
