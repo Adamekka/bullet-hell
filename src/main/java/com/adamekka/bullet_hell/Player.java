@@ -9,16 +9,16 @@ public final class Player implements Drawable {
     private Player() {}
     public static final Player getInstance() { return instance; }
 
-    public void shoot(double delta) { Gun.getInstance().shoot(delta); }
+    public void shoot(double delta) { PlayerGun.getInstance().shoot(delta); }
 
     // MARK: Movement
 
     public Dimension2D position = new Dimension2D(
-        Config.Window.SIZE.getWidth() / 2,
-        Config.Window.SIZE.getHeight() * 3 / 4
+        Config.Window.size.getWidth() / 2,
+        Config.Window.size.getHeight() * 3 / 4
     );
 
-    private static final double SPEED = 200;
+    private final double speed = 200;
 
     private MovementDirection lastDirection = MovementDirection.STILL;
     private MovementDirection direction = MovementDirection.STILL;
@@ -29,7 +29,7 @@ public final class Player implements Drawable {
         direction = MovementDirection.STILL;
         position = new Dimension2D(
             position.getWidth(),
-            Math.max(0, position.getHeight() - SPEED * delta)
+            Math.max(0, position.getHeight() - speed * delta)
         );
     }
 
@@ -38,8 +38,8 @@ public final class Player implements Drawable {
         position = new Dimension2D(
             position.getWidth(),
             Math.min(
-                Config.Window.SIZE.getHeight(),
-                position.getHeight() + SPEED * delta
+                Config.Window.size.getHeight(),
+                position.getHeight() + speed * delta
             )
         );
     }
@@ -47,7 +47,7 @@ public final class Player implements Drawable {
     public final void moveLeft(double delta) {
         direction = MovementDirection.LEFT;
         position = new Dimension2D(
-            Math.max(0, position.getWidth() - SPEED * delta),
+            Math.max(0, position.getWidth() - speed * delta),
             position.getHeight()
         );
     }
@@ -56,8 +56,8 @@ public final class Player implements Drawable {
         direction = MovementDirection.RIGHT;
         position = new Dimension2D(
             Math.min(
-                Config.Window.SIZE.getWidth(),
-                position.getWidth() + SPEED * delta
+                Config.Window.size.getWidth(),
+                position.getWidth() + speed * delta
             ),
             position.getHeight()
         );
@@ -103,7 +103,7 @@ public final class Player implements Drawable {
         gc.drawImage(
             sprite,
             spriteIndex * spriteSize.getWidth(),
-            spriteSize.getHeight() * direction.getValue(),
+            direction.getValue() * spriteSize.getHeight(),
             spriteSize.getWidth(),
             spriteSize.getHeight(),
             position.getWidth() - spriteSize.getWidth() / 2,

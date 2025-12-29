@@ -4,13 +4,13 @@ import javafx.geometry.Dimension2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public final class Momiji implements Drawable {
+public final class Momiji implements Drawable, Enemy {
     private static final Momiji instance = new Momiji();
     private Momiji() {}
     public static final Momiji getInstance() { return instance; }
 
     private Dimension2D position = new Dimension2D(
-        Config.Window.SIZE.getWidth() / 2, Config.Window.SIZE.getHeight() / 4
+        Config.Window.size.getWidth() / 2, Config.Window.size.getHeight() / 4
     );
 
     // MARK: Drawable
@@ -47,5 +47,17 @@ public final class Momiji implements Drawable {
             spriteSize.getWidth(),
             spriteSize.getHeight()
         );
+    }
+
+    // MARK: Enemy
+
+    @Override
+    public final void shoot(double delta) {
+        MomijiGun.getInstance().shoot(delta);
+    }
+
+    @Override
+    public final Dimension2D getPosition() {
+        return position;
     }
 }

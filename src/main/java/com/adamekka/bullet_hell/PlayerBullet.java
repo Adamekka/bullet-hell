@@ -4,7 +4,7 @@ import javafx.geometry.Dimension2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public final class PlayerBullet implements Bullet, Drawable {
+public final class PlayerBullet implements Bullet {
     public PlayerBullet(Dimension2D position) { this.position = position; }
 
     public Dimension2D position;
@@ -22,8 +22,9 @@ public final class PlayerBullet implements Bullet, Drawable {
 
     // MARK: Drawable
 
-    private final Image sprite
-        = new Image(Gun.class.getResourceAsStream("bullet.png"));
+    private final Image sprite = new Image(
+        PlayerBullet.class.getResourceAsStream("player-bullet.png")
+    );
 
     private final Dimension2D spriteSize = new Dimension2D(16, 64);
 

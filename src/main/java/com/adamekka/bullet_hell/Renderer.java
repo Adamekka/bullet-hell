@@ -1,6 +1,5 @@
 package com.adamekka.bullet_hell;
 
-import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,8 +9,6 @@ import javafx.scene.text.Font;
 public final class Renderer extends AnimationTimer {
     private final Canvas canvas;
     private final GraphicsContext gc;
-
-    private final ArrayList<Drawable> drawables = new ArrayList<>();
 
     private long lastFrame = 0;
 
@@ -29,23 +26,18 @@ public final class Renderer extends AnimationTimer {
 
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        for (Drawable drawable : drawables) {
-            drawable.draw(gc, delta);
-        }
-
         Player.getInstance().draw(gc, delta);
 
+        PlayerGun.getInstance().draw(gc, delta);
+        PlayerGun.getInstance().simulate(delta);
+
         Momiji.getInstance().draw(gc, delta);
+        Momiji.getInstance().shoot(delta);
 
-        Gun.getInstance().draw(gc, delta);
-
-        Gun.getInstance().simulate(delta);
+        MomijiGun.getInstance().draw(gc, delta);
+        MomijiGun.getInstance().simulate(delta);
 
         drawFps(delta);
-    }
-
-    public final void addDrawable(Drawable drawable) {
-        drawables.add(drawable);
     }
 
     private final void drawFps(double delta) {

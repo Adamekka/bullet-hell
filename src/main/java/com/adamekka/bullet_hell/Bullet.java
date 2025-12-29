@@ -1,5 +1,5 @@
 package com.adamekka.bullet_hell;
 
-public interface Bullet {
+public interface Bullet extends Drawable {
     void simulate(double delta);
 }

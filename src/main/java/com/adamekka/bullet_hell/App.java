@@ -14,13 +14,13 @@ public final class App extends Application {
         Group root = new Group();
 
         Canvas canvas = new Canvas(
-            Config.Window.SIZE.getWidth(), Config.Window.SIZE.getHeight()
+            Config.Window.size.getWidth(), Config.Window.size.getHeight()
         );
 
         root.getChildren().add(canvas);
 
         Scene scene = new Scene(
-            root, Config.Window.SIZE.getWidth(), Config.Window.SIZE.getHeight()
+            root, Config.Window.size.getWidth(), Config.Window.size.getHeight()
         );
 
         Input input = Input.getInstance();
@@ -28,7 +28,7 @@ public final class App extends Application {
         scene.setOnKeyPressed(input::handleKeyPressed);
         scene.setOnKeyReleased(input::handleKeyReleased);
 
-        primaryStage.setTitle(Config.Window.TITLE);
+        primaryStage.setTitle(Config.Window.title);
         primaryStage.resizableProperty().setValue(false);
         primaryStage.setScene(scene);
         primaryStage.show();
