@@ -25,8 +25,8 @@ public final class Momiji implements Enemy {
         }
 
         this.health -= 1;
-        if (App.ui != null) {
-            Platform.runLater(() -> App.ui.setEnemyHealth(health));
+        if (SceneManager.ui != null) {
+            Platform.runLater(() -> SceneManager.ui.setEnemyHealth(health));
         }
     }
 

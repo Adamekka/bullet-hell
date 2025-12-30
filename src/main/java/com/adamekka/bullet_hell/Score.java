@@ -15,8 +15,8 @@ public final class Score {
     private Score() {
         this.highScore = readHighScoreFromFile();
 
-        App.ui.setHiScore(highScore);
-        App.ui.setScore(score);
+        SceneManager.ui.setHiScore(highScore);
+        SceneManager.ui.setScore(score);
     }
     public static final Score getInstance() { return instance; }
 
@@ -33,15 +33,15 @@ public final class Score {
             highScore = score;
             writeHighScoreToFile(highScore);
 
-            App.ui.setHiScore(highScore);
+            SceneManager.ui.setHiScore(highScore);
         }
 
-        App.ui.setScore(score);
+        SceneManager.ui.setScore(score);
     }
 
     public void dec() {
         score -= 10;
-        App.ui.setScore(score);
+        SceneManager.ui.setScore(score);
     }
 
     private static int readHighScoreFromFile() {

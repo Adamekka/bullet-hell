@@ -9,7 +9,7 @@ public final class MainMenuUIController {
 
     @FXML
     public void onPlay() {
-        App.startGame();
+        SceneManager.startGame();
     }
 
     @FXML
