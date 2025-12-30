@@ -30,6 +30,7 @@ public final class Renderer extends AnimationTimer {
 
         PlayerGun.getInstance().draw(gc, delta);
         PlayerGun.getInstance().simulate(delta);
+        PlayerGun.getInstance().collide();
 
         Momiji.getInstance().draw(gc, delta);
         Momiji.getInstance().shoot(delta);
@@ -37,6 +38,7 @@ public final class Renderer extends AnimationTimer {
 
         MomijiGun.getInstance().draw(gc, delta);
         MomijiGun.getInstance().simulate(delta);
+        MomijiGun.getInstance().collide();
 
         drawFps(delta);
     }

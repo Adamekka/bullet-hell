@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public final class App extends Application {
     public static final void main(String[] args) { launch(args); }
 
-    UIController ui;
+    static UIController ui;
 
     @Override
     public final void start(Stage primaryStage) {

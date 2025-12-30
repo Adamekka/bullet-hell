@@ -1,5 +1,6 @@
 package com.adamekka.bullet_hell;
 
+import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -10,6 +11,23 @@ public final class Player implements Drawable {
     public static final Player getInstance() { return instance; }
 
     public void shoot(double delta) { PlayerGun.getInstance().shoot(delta); }
+
+    // MARK: Health
+
+    private int health = 5;
+
+    public final void decHealth() {
+        if (health <= 0) {
+            this.health = 0;
+            // TODO: Die
+            return;
+        }
+
+        this.health -= 1;
+        if (App.ui != null) {
+            Platform.runLater(() -> App.ui.setPlayer(health));
+        }
+    }
 
     // MARK: Movement
 

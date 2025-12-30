@@ -1,5 +1,6 @@
 package com.adamekka.bullet_hell;
 
+import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -9,7 +10,25 @@ public final class Momiji implements Enemy {
     private Momiji() {}
     public static final Momiji getInstance() { return instance; }
 
-    private Dimension2D position = new Dimension2D(0, 0);
+    public Dimension2D position = new Dimension2D(0, 0);
+
+    // MARK: Health
+
+    public static final double max_health = 500;
+    private int health = 500;
+
+    public final void decHealth() {
+        if (health <= 0) {
+            this.health = 0;
+            // TODO: Momiji dies
+            return;
+        }
+
+        this.health -= 1;
+        if (App.ui != null) {
+            Platform.runLater(() -> App.ui.setEnemyHealth(health));
+        }
+    }
 
     // MARK: Drawable
 

@@ -1,5 +1,6 @@
 package com.adamekka.bullet_hell;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -39,6 +40,16 @@ public final class MomijiGun implements Gun {
     public void draw(GraphicsContext gc, double delta) {
         for (MomijiBullet bullet : bullets) {
             bullet.draw(gc, delta);
+        }
+    }
+
+    @Override
+    public void collide() {
+        for (Iterator<MomijiBullet> it = bullets.iterator(); it.hasNext();) {
+            MomijiBullet bullet = it.next();
+            if (bullet.collide()) {
+                it.remove();
+            }
         }
     }
 }

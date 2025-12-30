@@ -54,4 +54,21 @@ public final class MomijiBullet implements Bullet {
             spriteSize.getHeight()
         );
     }
+
+    // MARK: Collide
+
+    @Override
+    public boolean collide() {
+        double dx
+            = position.getWidth() - Player.getInstance().position.getWidth();
+        double dy
+            = position.getHeight() - Player.getInstance().position.getHeight();
+
+        if (dx * dx + dy * dy < 4 * 4) {
+            Player.getInstance().decHealth();
+            return true;
+        }
+
+        return false;
+    }
 }

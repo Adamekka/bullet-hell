@@ -38,4 +38,21 @@ public final class PlayerBullet implements Bullet {
             spriteSize.getHeight()
         );
     }
+
+    // MARK: Collide
+    @Override
+
+    public boolean collide() {
+        double dx
+            = position.getWidth() - Momiji.getInstance().position.getWidth();
+        double dy
+            = position.getHeight() - Momiji.getInstance().position.getHeight();
+
+        if (dx * dx + dy * dy < 32 * 32) {
+            Momiji.getInstance().decHealth();
+            return true;
+        }
+
+        return false;
+    }
 }
