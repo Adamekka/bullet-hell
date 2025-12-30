@@ -12,12 +12,11 @@ public final class MomijiGun implements Gun {
     private final LinkedList<MomijiBullet> bullets = new LinkedList<>();
 
     private double timeSinceLastShot = 0;
-    private final double cooldown = 0.02;
 
     @Override
     public void shoot(double delta) {
         timeSinceLastShot += delta;
-        if (timeSinceLastShot >= cooldown) {
+        if (timeSinceLastShot >= Config.Game.difficulty.getLevel()) {
             bullets.add(new MomijiBullet(Momiji.getInstance().getPosition()));
             timeSinceLastShot = 0;
         }
