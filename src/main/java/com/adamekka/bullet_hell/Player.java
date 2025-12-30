@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 public final class Player implements Drawable {
     private static final Player instance = new Player();
-    private Player() {}
+    private Player() { App.ui.setPlayer(health); }
     public static final Player getInstance() { return instance; }
 
     public void shoot(double delta) { PlayerGun.getInstance().shoot(delta); }
