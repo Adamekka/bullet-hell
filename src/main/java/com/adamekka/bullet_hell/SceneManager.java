@@ -52,7 +52,6 @@ public final class SceneManager {
             gameMediaPlayer.stop();
             gameMediaPlayer = null;
         }
-        Input.getInstance().clear();
 
         // Load main menu FXML (or fallback)
         try {
@@ -95,8 +94,6 @@ public final class SceneManager {
     public static void startGame() {
         if (primaryStage == null)
             return;
-
-        Input.getInstance().clear();
 
         if (renderer != null) {
             renderer.stop();
@@ -157,9 +154,10 @@ public final class SceneManager {
             root, Config.Window.size.getWidth(), Config.Window.size.getHeight()
         );
 
-        Input input = Input.getInstance();
-        scene.setOnKeyPressed(input::handleKeyPressed);
-        scene.setOnKeyReleased(input::handleKeyReleased);
+        renderer = new Renderer(gameCanvas);
+
+        scene.setOnKeyPressed(renderer.input::handleKeyPressed);
+        scene.setOnKeyReleased(renderer.input::handleKeyReleased);
 
         primaryStage.setTitle(Config.Window.title);
         primaryStage.resizableProperty().setValue(false);
@@ -167,11 +165,8 @@ public final class SceneManager {
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> System.exit(0));
 
-        // Load persisted high score
-        Score.getInstance();
+        Config.Game.difficulty = Difficulty.EASY;
 
-        // Start renderer once per game start
-        renderer = new Renderer(gameCanvas);
         renderer.start();
     }
 }

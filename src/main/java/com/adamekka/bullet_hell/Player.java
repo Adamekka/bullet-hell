@@ -5,12 +5,16 @@ import javafx.geometry.Dimension2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public final class Player implements Drawable {
-    private static final Player instance = new Player();
-    private Player() { SceneManager.ui.setPlayer(health); }
-    public static final Player getInstance() { return instance; }
+public final class Player implements Character {
+    public PlayerGun gun;
 
-    public void shoot(double delta) { PlayerGun.getInstance().shoot(delta); }
+    public Player() { SceneManager.ui.setPlayer(health); }
+
+    public void createGun(Momiji momiji, Score score) {
+        this.gun = new PlayerGun(this, momiji, score);
+    }
+
+    public void shoot(double delta) { gun.shoot(delta); }
 
     // MARK: Health
 
@@ -31,10 +35,12 @@ public final class Player implements Drawable {
 
     // MARK: Movement
 
-    public Dimension2D position = new Dimension2D(
+    private Dimension2D position = new Dimension2D(
         Config.Canvas.size.getWidth() / 2,
         Config.Canvas.size.getHeight() * 3 / 4
     );
+
+    public final Dimension2D getPosition() { return position; }
 
     private final double speed = 200;
 

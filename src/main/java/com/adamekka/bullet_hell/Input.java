@@ -1,15 +1,16 @@
 package com.adamekka.bullet_hell;
 
+import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public final class Input {
-    private static final Input instance = new Input();
-    private Input() {}
-    public static final Input getInstance() { return instance; }
+    private WeakReference<Player> player;
 
     private final HashSet<KeyCode> pressedKeys = new HashSet<>();
+
+    public Input(Player player) { this.player = new WeakReference<>(player); }
 
     public final void handleKeyPressed(KeyEvent event) {
         pressedKeys.add(event.getCode());
@@ -29,37 +30,41 @@ public final class Input {
             return;
         }
 
+        if (player == null || player.get() == null) {
+            return;
+        }
+
         if (pressedKeys.contains(KeyCode.W)
             || pressedKeys.contains(KeyCode.UP)) {
-            Player.getInstance().moveUp(delta);
+            player.get().moveUp(delta);
             moving = true;
         }
 
         if (pressedKeys.contains(KeyCode.S)
             || pressedKeys.contains(KeyCode.DOWN)) {
-            Player.getInstance().moveDown(delta);
+            player.get().moveDown(delta);
             moving = true;
         }
 
         if (pressedKeys.contains(KeyCode.A)
             || pressedKeys.contains(KeyCode.LEFT)) {
-            Player.getInstance().moveLeft(delta);
+            player.get().moveLeft(delta);
             moving = true;
         }
 
         if (pressedKeys.contains(KeyCode.D)
             || pressedKeys.contains(KeyCode.RIGHT)) {
-            Player.getInstance().moveRight(delta);
+            player.get().moveRight(delta);
             moving = true;
         }
 
         if (!moving) {
-            Player.getInstance().still();
+            player.get().still();
         }
 
         if (pressedKeys.contains(KeyCode.J)
             || pressedKeys.contains(KeyCode.Z)) {
-            Player.getInstance().shoot(delta);
+            player.get().shoot(delta);
         }
     }
 }

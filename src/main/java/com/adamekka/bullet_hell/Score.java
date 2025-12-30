@@ -11,14 +11,12 @@ public final class Score {
         System.getProperty("user.home"), ".bullet-hell", "highscore.txt"
     );
 
-    private static final Score instance = new Score();
-    private Score() {
+    public Score() {
         this.highScore = readHighScoreFromFile();
 
         SceneManager.ui.setHiScore(highScore);
         SceneManager.ui.setScore(score);
     }
-    public static final Score getInstance() { return instance; }
 
     private int highScore = 0;
     private int score = 0;

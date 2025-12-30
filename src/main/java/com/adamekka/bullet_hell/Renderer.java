@@ -12,9 +12,26 @@ public final class Renderer extends AnimationTimer {
 
     private long lastFrame = 0;
 
+    private final Player player;
+    private final Momiji momiji;
+
+    public final Input input;
+
+    private final Score score;
+
     Renderer(Canvas canvas) {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
+
+        this.player = new Player();
+        this.momiji = new Momiji();
+
+        this.score = new Score();
+
+        this.player.createGun(momiji, score);
+        this.momiji.createGun(player, score);
+
+        this.input = new Input(player);
     }
 
     @Override
@@ -22,23 +39,23 @@ public final class Renderer extends AnimationTimer {
         double delta = lastFrame == 0 ? 0 : (now - lastFrame) / 1_000_000_000D;
         lastFrame = now;
 
-        Input.getInstance().update(delta);
+        input.update(delta);
 
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        Player.getInstance().draw(gc, delta);
+        player.draw(gc, delta);
 
-        PlayerGun.getInstance().draw(gc, delta);
-        PlayerGun.getInstance().simulate(delta);
-        PlayerGun.getInstance().collide();
+        player.gun.draw(gc, delta);
+        player.gun.simulate(delta);
+        player.gun.collide();
 
-        Momiji.getInstance().draw(gc, delta);
-        Momiji.getInstance().shoot(delta);
-        Momiji.getInstance().simulate(delta);
+        momiji.draw(gc, delta);
+        momiji.shoot(delta);
+        momiji.simulate(delta);
 
-        MomijiGun.getInstance().draw(gc, delta);
-        MomijiGun.getInstance().simulate(delta);
-        MomijiGun.getInstance().collide();
+        momiji.gun.draw(gc, delta);
+        momiji.gun.simulate(delta);
+        momiji.gun.collide();
 
         drawFps(delta);
     }

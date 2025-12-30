@@ -42,15 +42,13 @@ public final class PlayerBullet implements Bullet {
     // MARK: Collide
     @Override
 
-    public boolean collide() {
-        double dx
-            = position.getWidth() - Momiji.getInstance().position.getWidth();
-        double dy
-            = position.getHeight() - Momiji.getInstance().position.getHeight();
+    public boolean collide(Character enemy, Score score) {
+        double dx = position.getWidth() - enemy.getPosition().getWidth();
+        double dy = position.getHeight() - enemy.getPosition().getHeight();
 
         if (dx * dx + dy * dy < 32 * 32) {
-            Momiji.getInstance().decHealth();
-            Score.getInstance().inc();
+            enemy.decHealth();
+            score.inc();
             return true;
         }
 

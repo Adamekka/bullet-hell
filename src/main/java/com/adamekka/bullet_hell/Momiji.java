@@ -6,11 +6,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public final class Momiji implements Enemy {
-    private static final Momiji instance = new Momiji();
-    private Momiji() {}
-    public static final Momiji getInstance() { return instance; }
-
     public Dimension2D position = new Dimension2D(0, 0);
+
+    public MomijiGun gun;
+
+    public void createGun(Player player, Score score) {
+        this.gun = new MomijiGun(player, this, score);
+    }
 
     // MARK: Health
 
@@ -70,7 +72,7 @@ public final class Momiji implements Enemy {
 
     @Override
     public final void shoot(double delta) {
-        MomijiGun.getInstance().shoot(delta);
+        gun.shoot(delta);
     }
 
     private double orbitAngle = 0;
