@@ -20,25 +20,35 @@ public final class Input {
     }
 
     public final void update(double delta) {
-        if (pressedKeys.isEmpty()) {
-            Player.getInstance().still();
-            return;
+        boolean moving = false;
+
+        if (pressedKeys.contains(KeyCode.W)
+            || pressedKeys.contains(KeyCode.UP)) {
+            Player.getInstance().moveUp(delta);
+            moving = true;
         }
 
-        if (pressedKeys.contains(KeyCode.W) || pressedKeys.contains(KeyCode.UP))
-            Player.getInstance().moveUp(delta);
-
         if (pressedKeys.contains(KeyCode.S)
-            || pressedKeys.contains(KeyCode.DOWN))
+            || pressedKeys.contains(KeyCode.DOWN)) {
             Player.getInstance().moveDown(delta);
+            moving = true;
+        }
 
         if (pressedKeys.contains(KeyCode.A)
-            || pressedKeys.contains(KeyCode.LEFT))
+            || pressedKeys.contains(KeyCode.LEFT)) {
             Player.getInstance().moveLeft(delta);
+            moving = true;
+        }
 
         if (pressedKeys.contains(KeyCode.D)
-            || pressedKeys.contains(KeyCode.RIGHT))
+            || pressedKeys.contains(KeyCode.RIGHT)) {
             Player.getInstance().moveRight(delta);
+            moving = true;
+        }
+
+        if (!moving) {
+            Player.getInstance().still();
+        }
 
         if (pressedKeys.contains(KeyCode.J)
             || pressedKeys.contains(KeyCode.Z)) {
