@@ -16,7 +16,7 @@ public final class MomijiGun implements Gun {
     @Override
     public void shoot(double delta) {
         timeSinceLastShot += delta;
-        if (timeSinceLastShot >= Config.Game.difficulty.getLevel()) {
+        if (timeSinceLastShot >= Config.Game.difficulty.getCooldown()) {
             bullets.add(new MomijiBullet(Momiji.getInstance().getPosition()));
             timeSinceLastShot = 0;
         }

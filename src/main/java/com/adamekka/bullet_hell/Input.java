@@ -19,8 +19,15 @@ public final class Input {
         pressedKeys.remove(event.getCode());
     }
 
+    public final void clear() { pressedKeys.clear(); }
+
     public final void update(double delta) {
         boolean moving = false;
+
+        if (pressedKeys.contains(KeyCode.Q)) {
+            SceneManager.showMainMenu();
+            return;
+        }
 
         if (pressedKeys.contains(KeyCode.W)
             || pressedKeys.contains(KeyCode.UP)) {

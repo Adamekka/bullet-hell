@@ -19,7 +19,7 @@ public final class Player implements Drawable {
     public final void decHealth() {
         if (health <= 0) {
             this.health = 0;
-            // TODO: Die
+            SceneManager.ui.showLost();
             return;
         }
 

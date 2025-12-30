@@ -26,7 +26,8 @@ public final class SceneManager {
     public static UIController ui;
     private static Parent gameParent;
     private static Canvas gameCanvas;
-    private static Renderer renderer;
+    public static Renderer renderer;
+    private static MediaPlayer gameMediaPlayer;
 
     private SceneManager() {}
 
@@ -43,6 +44,16 @@ public final class SceneManager {
     }
 
     public static void showMainMenu() {
+        if (renderer != null) {
+            renderer.stop();
+            renderer = null;
+        }
+        if (gameMediaPlayer != null) {
+            gameMediaPlayer.stop();
+            gameMediaPlayer = null;
+        }
+        Input.getInstance().clear();
+
         // Load main menu FXML (or fallback)
         try {
             FXMLLoader mainMenuLoader = new FXMLLoader(
@@ -84,6 +95,18 @@ public final class SceneManager {
     public static void startGame() {
         if (primaryStage == null)
             return;
+
+        Input.getInstance().clear();
+
+        if (renderer != null) {
+            renderer.stop();
+            renderer = null;
+        }
+
+        if (gameMediaPlayer != null) {
+            gameMediaPlayer.stop();
+            gameMediaPlayer = null;
+        }
 
         // Load game UI from FXML (or fallback)
         try {
