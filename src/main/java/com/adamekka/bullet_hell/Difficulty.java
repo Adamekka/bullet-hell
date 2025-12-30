@@ -6,11 +6,11 @@ public enum Difficulty {
     HARD(0.01),
     LUNATIC(0.005);
 
-    private final double level;
+    private final double cooldown;
 
-    Difficulty(double level) { this.level = level; }
+    Difficulty(double cooldown) { this.cooldown = cooldown; }
 
-    public double getLevel() { return level; }
+    public double getCooldown() { return cooldown; }
 
     public Difficulty next() {
         return switch (this) {
