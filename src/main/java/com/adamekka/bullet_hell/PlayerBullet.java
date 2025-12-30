@@ -50,6 +50,7 @@ public final class PlayerBullet implements Bullet {
 
         if (dx * dx + dy * dy < 32 * 32) {
             Momiji.getInstance().decHealth();
+            Score.getInstance().inc();
             return true;
         }
 

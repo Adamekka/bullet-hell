@@ -66,6 +66,7 @@ public final class MomijiBullet implements Bullet {
 
         if (dx * dx + dy * dy < 4 * 4) {
             Player.getInstance().decHealth();
+            Score.getInstance().dec();
             return true;
         }
 
