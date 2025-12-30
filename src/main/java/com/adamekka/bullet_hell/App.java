@@ -78,6 +78,9 @@ public final class App extends Application {
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> System.exit(0));
 
+        // For high score loading
+        Score.getInstance();
+
         Renderer renderer = new Renderer(canvas);
         renderer.start();
     }
