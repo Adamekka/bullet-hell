@@ -14,13 +14,64 @@ import javafx.stage.Stage;
 public final class App extends Application {
     public static final void main(String[] args) { launch(args); }
 
-    static UIController ui;
+    // MARK: Main Menu
+
+    MainMenuUIController mainMenuUI;
+    Parent mainMenuParent;
+    Canvas mainMenuCanvas;
+
+    static Stage primaryStage;
 
     @Override
     public final void start(Stage primaryStage) {
-        Parent parent;
-        Canvas canvas;
+        App.primaryStage = primaryStage;
 
+        try {
+            FXMLLoader mainMenuLoader
+                = new FXMLLoader(App.class.getResource("main-menu.fxml"));
+            mainMenuParent = mainMenuLoader.load();
+            mainMenuUI = mainMenuLoader.getController();
+
+            Object node = mainMenuLoader.getNamespace().get("canvas");
+            if (!(node instanceof Canvas)) {
+                throw new IllegalStateException(
+                    "application.fxml must define a Canvas with "
+                    + "fx:id=\"canvas\""
+                );
+            }
+            mainMenuCanvas = (Canvas)node;
+        } catch (Exception e) {
+            // Fallback
+            e.printStackTrace();
+
+            Group fallbackRoot = new Group();
+            mainMenuCanvas = new Canvas(
+                Config.Window.size.getWidth(), Config.Window.size.getHeight()
+            );
+            fallbackRoot.getChildren().add(mainMenuCanvas);
+            mainMenuParent = fallbackRoot;
+        }
+
+        Group root = new Group();
+        root.getChildren().add(mainMenuParent);
+        Scene scene = new Scene(
+            root, Config.Window.size.getWidth(), Config.Window.size.getHeight()
+        );
+
+        primaryStage.setTitle(Config.Window.title);
+        primaryStage.resizableProperty().setValue(false);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.setOnCloseRequest(e -> System.exit(0));
+    }
+
+    // MARK: Game
+
+    static UIController ui;
+    static Parent parent;
+    static Canvas canvas;
+
+    public static void startGame() {
         try {
             FXMLLoader loader
                 = new FXMLLoader(App.class.getResource("application.fxml"));
@@ -78,7 +129,6 @@ public final class App extends Application {
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> System.exit(0));
 
-        // For high score loading
         Score.getInstance();
 
         Renderer renderer = new Renderer(canvas);
