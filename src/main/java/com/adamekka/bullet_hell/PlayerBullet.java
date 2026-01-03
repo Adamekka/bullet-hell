@@ -40,8 +40,8 @@ public final class PlayerBullet implements Bullet {
     }
 
     // MARK: Collide
-    @Override
 
+    @Override
     public boolean collide(Character enemy, Score score) {
         double dx = position.getWidth() - enemy.getPosition().getWidth();
         double dy = position.getHeight() - enemy.getPosition().getHeight();
