@@ -14,7 +14,10 @@ public final class Player implements Character {
         this.gun = new PlayerGun(this, momiji, score);
     }
 
-    public void shoot(double delta) { gun.shoot(delta); }
+    @Override
+    public final Gun getGun() {
+        return gun;
+    }
 
     // MARK: Health
 

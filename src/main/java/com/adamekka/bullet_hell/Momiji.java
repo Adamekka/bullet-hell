@@ -71,8 +71,8 @@ public final class Momiji implements Enemy {
     // MARK: Enemy
 
     @Override
-    public final void shoot(double delta) {
-        gun.shoot(delta);
+    public final Gun getGun() {
+        return gun;
     }
 
     private double orbitAngle = 0;
