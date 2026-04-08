@@ -10,7 +10,9 @@ public final class Input {
 
     private final HashSet<KeyCode> pressedKeys = new HashSet<>();
 
-    public Input(Player player) { this.player = new WeakReference<>(player); }
+    public Input(Player player) {
+        this.player = new WeakReference<>(player);
+    }
 
     public final void handleKeyPressed(KeyEvent event) {
         pressedKeys.add(event.getCode());
@@ -20,7 +22,9 @@ public final class Input {
         pressedKeys.remove(event.getCode());
     }
 
-    public final void clear() { pressedKeys.clear(); }
+    public final void clear() {
+        pressedKeys.clear();
+    }
 
     public final void update(double delta) {
         boolean moving = false;

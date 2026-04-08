@@ -8,7 +8,9 @@ import javafx.scene.image.Image;
 public final class Player implements Character {
     public PlayerGun gun;
 
-    public Player() { SceneManager.ui.setPlayer(health); }
+    public Player() {
+        SceneManager.ui.setPlayer(health);
+    }
 
     public void createGun(Momiji momiji, Score score) {
         this.gun = new PlayerGun(this, momiji, score);
@@ -43,14 +45,18 @@ public final class Player implements Character {
         Config.Canvas.size.getHeight() * 3 / 4
     );
 
-    public final Dimension2D getPosition() { return position; }
+    public final Dimension2D getPosition() {
+        return position;
+    }
 
     private final double speed = 200;
 
     private MovementDirection lastDirection = MovementDirection.STILL;
     private MovementDirection direction = MovementDirection.STILL;
 
-    public final void still() { direction = MovementDirection.STILL; }
+    public final void still() {
+        direction = MovementDirection.STILL;
+    }
 
     public final void moveUp(double delta) {
         direction = MovementDirection.STILL;

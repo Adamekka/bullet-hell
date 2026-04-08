@@ -5,7 +5,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public final class PlayerBullet implements Bullet {
-    public PlayerBullet(Dimension2D position) { this.position = position; }
+    public PlayerBullet(Dimension2D position) {
+        this.position = position;
+    }
 
     public Dimension2D position;
 

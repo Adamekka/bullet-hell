@@ -5,6 +5,11 @@ public final record Angle(double radians) {
         return new Angle(Math.toRadians(deg));
     }
 
-    public double sin() { return Math.sin(radians); }
-    public double cos() { return Math.cos(radians); }
+    public double sin() {
+        return Math.sin(radians);
+    }
+
+    public double cos() {
+        return Math.cos(radians);
+    }
 }

@@ -36,7 +36,7 @@ public final class Renderer extends AnimationTimer {
 
     @Override
     public final void handle(long now) {
-        double delta = lastFrame == 0 ? 0 : (now - lastFrame) / 1_000_000_000D;
+        double delta = lastFrame == 0 ? 0 : (now - lastFrame) / 1_000_000_000d;
         lastFrame = now;
 
         input.update(delta);

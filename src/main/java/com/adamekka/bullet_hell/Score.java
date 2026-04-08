@@ -21,8 +21,13 @@ public final class Score {
     private int highScore = 0;
     private int score = 0;
 
-    public int getHighScore() { return highScore; }
-    public int getScore() { return score; }
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public int getScore() {
+        return score;
+    }
 
     public void inc() {
         score += 1;

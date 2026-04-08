@@ -8,9 +8,13 @@ public enum Difficulty {
 
     private final double cooldown;
 
-    Difficulty(double cooldown) { this.cooldown = cooldown; }
+    Difficulty(double cooldown) {
+        this.cooldown = cooldown;
+    }
 
-    public double getCooldown() { return cooldown; }
+    public double getCooldown() {
+        return cooldown;
+    }
 
     public Difficulty next() {
         return switch (this) {

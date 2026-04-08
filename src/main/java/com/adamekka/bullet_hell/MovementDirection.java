@@ -7,7 +7,11 @@ public enum MovementDirection {
 
     private final int value;
 
-    MovementDirection(int value) { this.value = value; }
+    MovementDirection(int value) {
+        this.value = value;
+    }
 
-    public final int getValue() { return value; }
+    public final int getValue() {
+        return value;
+    }
 }
