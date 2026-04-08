@@ -5,7 +5,7 @@ import javafx.geometry.Dimension2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public final class Player implements Character {
+public final class Player implements PlayableCharacter {
     public PlayerGun gun;
 
     public Player() {
